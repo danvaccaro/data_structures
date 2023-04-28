@@ -8,6 +8,20 @@ struct BSTNode
     KeyType key;
     ValueType val;
     BSTNode *left, *right;
+    BSTNode(KeyType key, ValueType val)
+    {
+        this->key = key;
+        this->val = val;
+        left = nullptr;
+        right = nullptr;
+    }
+    BSTNode(KeyType key, ValueType val, BSTNode *left, BSTNode *right)
+    {
+        this->key = key;
+        this->val = val;
+        this->left = left;
+        this->right = right;
+    }
 };
 
 class BinarySearchTree
@@ -30,5 +44,6 @@ private:
     bool isEmpty(BSTNode *tree);
     bool contains(KeyType key, BSTNode *tree);
     KeyType min(BSTNode *tree);
+    KeyType max(BSTNode *tree);
     bool isLeaf(BSTNode *tree);
 };
