@@ -32,7 +32,9 @@ bool BinarySearchTree::isEmpty(BSTNode *tree) {
 }
 
 bool BinarySearchTree::isLeaf (BSTNode *tree) {
-
+    if (tree->left == nullptr && tree->right) 
+        return true;
+    return false;
 }
 
 int BinarySearchTree::getSize() {
