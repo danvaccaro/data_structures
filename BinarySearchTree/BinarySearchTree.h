@@ -14,7 +14,7 @@ class BinarySearchTree
 {
 public:
     bool isEmpty();
-    int size();
+    int getSize();
     bool contains(KeyType searchKey);
     void insert(KeyType key, ValueType value);
     void remove(KeyType key);
