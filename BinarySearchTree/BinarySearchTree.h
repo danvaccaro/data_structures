@@ -32,29 +32,30 @@ class BinarySearchTree
 public:
     BinarySearchTree();
     ~BinarySearchTree();
-    bool isEmpty();
-    int getSize();
-    bool contains(KeyType searchKey);
+    bool isEmpty() const;
+    int getSize() const;
+    bool contains(KeyType searchKey) const;
     void insert(KeyType key, ValueType value);
     void remove(KeyType key);
-    ValueType lookup(KeyType key);
-    KeyType min();
-    KeyType max();
-    void print();
+    BSTNode *lookup(KeyType key) const;
+    void setValue(KeyType key, ValueType value);
+    KeyType min() const;
+    KeyType max() const;
+    void print() const;
 
 private:
     BSTNode *root;
     int size;
-    bool isEmpty(BSTNode *tree);
-    bool contains(KeyType key, BSTNode *tree);
+    bool isEmpty(BSTNode *tree) const;
+    bool contains(KeyType key, BSTNode *tree) const;
     BSTNode *insert(KeyType key, ValueType value, BSTNode *tree);
     BSTNode *remove(KeyType key, BSTNode *tree);
-    BSTNode *lookup(KeyType key, BSTNode *tree);
-    BSTNode *min(BSTNode *tree);
-    BSTNode *max(BSTNode *tree);
-    bool isLeaf(BSTNode *tree);
-    void print(BSTNode *nodep);
+    BSTNode *lookup(KeyType key, BSTNode *tree) const;
+    BSTNode *min(BSTNode *tree) const;
+    BSTNode *max(BSTNode *tree) const;
+    void print(BSTNode *nodep) const;
+    bool isLeaf(BSTNode *tree) const;
     void deleteTree(BSTNode *nodep);
-    bool hasOnlyLeftChild(BSTNode *nodep);
-    bool hasOnlyRightChild(BSTNode *nodep);
+    bool hasOnlyLeftChild(BSTNode *nodep) const;
+    bool hasOnlyRightChild(BSTNode *nodep) const;
 };

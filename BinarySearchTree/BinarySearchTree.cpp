@@ -19,28 +19,28 @@ void BinarySearchTree::deleteTree(BSTNode *nodep)
     }
 }
 
-bool BinarySearchTree::isEmpty()
+bool BinarySearchTree::isEmpty() const
 {
     return isEmpty(root);
 }
 
-bool BinarySearchTree::isEmpty(BSTNode *nodep)
+bool BinarySearchTree::isEmpty(BSTNode *nodep) const
 {
     // if the node is nullptr, it is empty
     return nodep == nullptr;
 }
 
-int BinarySearchTree::getSize()
+int BinarySearchTree::getSize() const
 {
     return size;
 }
 
-bool BinarySearchTree::contains(KeyType searchKey)
+bool BinarySearchTree::contains(KeyType searchKey) const
 {
     return contains(searchKey, root);
 }
 
-bool BinarySearchTree::contains(KeyType searchKey, BSTNode *tree)
+bool BinarySearchTree::contains(KeyType searchKey, BSTNode *tree) const
 {
     // case 1: tree is empty
     if (isEmpty(tree))
@@ -66,26 +66,18 @@ BSTNode *BinarySearchTree::insert(KeyType key, ValueType value, BSTNode *tree)
     if (isEmpty(tree))
         return new BSTNode(key, value);
     else if (key == tree->key)
-    {
         tree->count++;
-    }
     else if (key < tree->key)
-    {
         tree->left = insert(key, value, tree->left);
-    }
     else if (key > tree->key)
-    {
         tree->right = insert(key, value, tree->right);
-    }
     return tree;
 }
 
 void BinarySearchTree::remove(KeyType key)
 {
     if (contains(key))
-    {
         root = remove(key, root);
-    }
     else
         std::cerr << key << " not found in tree :(\n";
 }
@@ -135,56 +127,64 @@ BSTNode *BinarySearchTree::remove(KeyType key, BSTNode *tree)
     return tree;
 }
 
-ValueType BinarySearchTree::lookup(KeyType key) {
+BSTNode *BinarySearchTree::lookup(KeyType key) const
+{
     if (contains(key))
-        return lookup(key, root)->val;
-    return NULL;
+        return lookup(key, root);
+    return nullptr;
 }
 
-BSTNode *BinarySearchTree::lookup(KeyType key, BSTNode *tree) {
-        if (key < tree->key) 
-            return lookup(key, tree->left);
-        if (key > tree->key) 
-            return lookup(key, tree->right);
-        else
-            return tree;
+BSTNode *BinarySearchTree::lookup(KeyType key, BSTNode *tree) const
+{
+    if (isEmpty(tree))
+        return nullptr;
+    else if (key < tree->key)
+        return lookup(key, tree->left);
+    else if (key > tree->key)
+        return lookup(key, tree->right);
+    else
+        return tree;
 }
 
-KeyType BinarySearchTree::min() {
+void BinarySearchTree::setValue(KeyType key, ValueType value)
+{
+    BSTNode *nodeToSet = lookup(key);
+    if (not (nodeToSet == nullptr))
+        nodeToSet->val = value;
+    else
+        std::cerr << key << " not found.\n";
+    return;
+}
+
+KeyType BinarySearchTree::min() const
+{
     return min(root)->key;
 }
-BSTNode *BinarySearchTree::min(BSTNode *tree)
+BSTNode *BinarySearchTree::min(BSTNode *tree) const
 {
     if (isEmpty(tree->left))
-    {
         return tree;
-    }
     return min(tree->left);
 }
 
-KeyType BinarySearchTree::max() {
+KeyType BinarySearchTree::max() const
+{
     return max(root)->key;
 }
-BSTNode *BinarySearchTree::max(BSTNode *tree)
+BSTNode *BinarySearchTree::max(BSTNode *tree) const
 {
     if (isEmpty(tree->right))
-    {
         return tree;
-    }
     return max(tree->right);
 }
 
-bool BinarySearchTree::isLeaf(BSTNode *nodep)
-{
-    return not isEmpty(nodep) and nodep->left == nullptr and nodep->right == nullptr;
-}
-
-void BinarySearchTree::print()
+void BinarySearchTree::print() const
 {
     print(root);
     std::cout << "\n";
 }
-void BinarySearchTree::print(BSTNode *nodep)
+
+void BinarySearchTree::print(BSTNode *nodep) const
 {
     if (not isEmpty(nodep))
     {
@@ -194,12 +194,17 @@ void BinarySearchTree::print(BSTNode *nodep)
     }
 }
 
-bool BinarySearchTree::hasOnlyLeftChild(BSTNode *nodep)
+bool BinarySearchTree::isLeaf(BSTNode *nodep) const
+{
+    return not isEmpty(nodep) and nodep->left == nullptr and nodep->right == nullptr;
+}
+
+bool BinarySearchTree::hasOnlyLeftChild(BSTNode *nodep) const
 {
     return nodep->right == nullptr;
 }
 
-bool BinarySearchTree::hasOnlyRightChild(BSTNode *nodep)
+bool BinarySearchTree::hasOnlyRightChild(BSTNode *nodep) const
 {
     return nodep->left == nullptr;
 }
