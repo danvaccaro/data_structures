@@ -8,12 +8,14 @@ struct BSTNode
     KeyType key;
     ValueType val;
     BSTNode *left, *right;
+    int count;
     BSTNode(KeyType key, ValueType val)
     {
         this->key = key;
         this->val = val;
         left = nullptr;
         right = nullptr;
+        count = 1;
     }
     BSTNode(KeyType key, ValueType val, BSTNode *left, BSTNode *right)
     {
@@ -21,12 +23,15 @@ struct BSTNode
         this->val = val;
         this->left = left;
         this->right = right;
+        count = 1;
     }
 };
 
 class BinarySearchTree
 {
 public:
+    BinarySearchTree();
+    ~BinarySearchTree();
     bool isEmpty();
     int getSize();
     bool contains(KeyType searchKey);
@@ -35,15 +40,20 @@ public:
     ValueType lookup(KeyType key);
     KeyType min();
     KeyType max();
+    void print();
 
 private:
     BSTNode *root;
     int size;
-    BSTNode *newNode(KeyType key, ValueType value, BSTNode *left, BSTNode *right);
-    BSTNode *newNode(KeyType key, ValueType value);
     bool isEmpty(BSTNode *tree);
     bool contains(KeyType key, BSTNode *tree);
-    KeyType min(BSTNode *tree);
-    KeyType max(BSTNode *tree);
+    BSTNode *insert(KeyType key, ValueType value, BSTNode *tree);
+    BSTNode *remove(KeyType key, BSTNode *tree);
+    BSTNode *min(BSTNode *tree);
+    BSTNode *max(BSTNode *tree);
     bool isLeaf(BSTNode *tree);
+    void print(BSTNode *nodep);
+    void deleteTree(BSTNode *nodep);
+    bool hasOnlyLeftChild(BSTNode *nodep);
+    bool hasOnlyRightChild(BSTNode *nodep);
 };
