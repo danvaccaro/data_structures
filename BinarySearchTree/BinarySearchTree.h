@@ -49,6 +49,7 @@ private:
     bool contains(KeyType key, BSTNode *tree);
     BSTNode *insert(KeyType key, ValueType value, BSTNode *tree);
     BSTNode *remove(KeyType key, BSTNode *tree);
+    BSTNode *lookup(KeyType key, BSTNode *tree);
     BSTNode *min(BSTNode *tree);
     BSTNode *max(BSTNode *tree);
     bool isLeaf(BSTNode *tree);

@@ -135,13 +135,24 @@ BSTNode *BinarySearchTree::remove(KeyType key, BSTNode *tree)
     return tree;
 }
 
-/*
 ValueType BinarySearchTree::lookup(KeyType key) {
-    if (contains(key)) return
-
+    if (contains(key))
+        return lookup(key, root)->val;
+    return NULL;
 }
-*/
 
+BSTNode *BinarySearchTree::lookup(KeyType key, BSTNode *tree) {
+        if (key < tree->key) 
+            return lookup(key, tree->left);
+        if (key > tree->key) 
+            return lookup(key, tree->right);
+        else
+            return tree;
+}
+
+KeyType BinarySearchTree::min() {
+    return min(root)->key;
+}
 BSTNode *BinarySearchTree::min(BSTNode *tree)
 {
     if (isEmpty(tree->left))
@@ -149,6 +160,18 @@ BSTNode *BinarySearchTree::min(BSTNode *tree)
         return tree;
     }
     return min(tree->left);
+}
+
+KeyType BinarySearchTree::max() {
+    return max(root)->key;
+}
+BSTNode *BinarySearchTree::max(BSTNode *tree)
+{
+    if (isEmpty(tree->right))
+    {
+        return tree;
+    }
+    return max(tree->right);
 }
 
 bool BinarySearchTree::isLeaf(BSTNode *nodep)
