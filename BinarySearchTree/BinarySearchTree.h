@@ -39,8 +39,8 @@ public:
     void remove(KeyType key);
     BSTNode *lookup(KeyType key) const;
     void setValue(KeyType key, ValueType value);
-    KeyType min() const;
-    KeyType max() const;
+    BSTNode *min() const;
+    BSTNode *max() const;
     void print() const;
 
 private:
