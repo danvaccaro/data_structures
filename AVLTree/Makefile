@@ -14,4 +14,4 @@ AVLTree.o: AVLTree.cpp AVLTree.h
 
 
 clean:
-	rm -rf BST_tests *.o *.dSYM
+	rm -rf AVL_tests *.o *.dSYM

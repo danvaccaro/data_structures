@@ -8,23 +8,11 @@ struct AVLNode
     KeyType key;
     ValueType val;
     AVLNode *left, *right;
-    int count;
-    AVLNode(KeyType key, ValueType val)
-    {
-        this->key = key;
-        this->val = val;
-        left = nullptr;
-        right = nullptr;
-        count = 1;
-    }
-    AVLNode(KeyType key, ValueType val, AVLNode *left, AVLNode *right)
-    {
-        this->key = key;
-        this->val = val;
-        this->left = left;
-        this->right = right;
-        count = 1;
-    }
+    int count, height;
+    AVLNode(KeyType key, ValueType val) : 
+        key(key), val(val), 
+        left(nullptr), right(nullptr), 
+        count(1), height(0) {}
 };
 
 class AVLTree
@@ -58,4 +46,10 @@ private:
     void deleteTree(AVLNode *nodep);
     bool hasOnlyLeftChild(AVLNode *nodep) const;
     bool hasOnlyRightChild(AVLNode *nodep) const;
+    void rebalance(AVLNode *nodep);
+    void rotateLeft(AVLNode *nodep);
+    void rotateRight(AVLNode *nodep);
+    int getHeight(AVLNode *nodep) const;
+    void updateHeight(AVLNode *nodep);
+    int heightDiff(AVLNode *nodep) const;
 };
