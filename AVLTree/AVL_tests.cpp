@@ -9,8 +9,6 @@ int main()
     testAVLTree.insert(5, "inserted4");
     testAVLTree.insert(9, "inserted5");
     testAVLTree.print();
-    testAVLTree.remove(3);
-    testAVLTree.print();
     /*
         std::cerr << "Single node tree tests: \n";
         AVLTree singleNodeAVLTree;

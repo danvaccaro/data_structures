@@ -46,9 +46,9 @@ private:
     void deleteTree(AVLNode *nodep);
     bool hasOnlyLeftChild(AVLNode *nodep) const;
     bool hasOnlyRightChild(AVLNode *nodep) const;
-    void rebalance(AVLNode *nodep);
-    void rotateLeft(AVLNode *nodep);
-    void rotateRight(AVLNode *nodep);
+    AVLNode *rebalance(AVLNode *nodep);
+    AVLNode *rotateLeft(AVLNode *nodep);
+    AVLNode *rotateRight(AVLNode *nodep);
     int getHeight(AVLNode *nodep) const;
     void updateHeight(AVLNode *nodep);
     int heightDiff(AVLNode *nodep) const;
