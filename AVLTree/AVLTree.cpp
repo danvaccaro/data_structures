@@ -81,7 +81,6 @@ bool AVLTree::contains(KeyType searchKey, AVLNode *tree) const
 // returns: void, updates the root and size members appropriately
 void AVLTree::insert(KeyType key, ValueType value)
 {
-    std::cerr << "inserting " << key << "\n";
     root = insert(key, value, root);
     size++;
 }
@@ -106,10 +105,8 @@ AVLNode *AVLTree::insert(KeyType key, ValueType value, AVLNode *tree)
     // Begin AVL maintenance
     // update height
     updateHeight(tree);
-    // rebalance the tree
-    tree = rebalance(tree);
-    // return the root of the subtree
-    return tree;
+    // return the rebalanced tree
+    return rebalance(tree);
 }
 // remove
 // purpose: removes the node containing a given key from the tree
@@ -180,9 +177,8 @@ AVLNode *AVLTree::remove(KeyType key, AVLNode *tree)
     }
     /*AVL Maintenence*/
     updateHeight(tree);
-    tree = rebalance(tree);
-    // return the root of the new tree
-    return tree;
+    //return the rebalanced tree
+    return rebalance(tree);
 }
 // lookup
 // purpose: looks for a given key in the tree
@@ -343,7 +339,6 @@ AVLNode *AVLTree::rebalance(AVLNode *nodep)
     // if heightdiff is greater than 1, left subtree is too tall
     if (heightDiff(nodep) > 1)
     {
-        std::cerr << "left subtree too tall!\n";
         // left left case
         if (heightDiff(nodep->left) > 0)
         {
@@ -359,11 +354,9 @@ AVLNode *AVLTree::rebalance(AVLNode *nodep)
     }
     else if (heightDiff(nodep) < -1)
     {
-        std::cerr << "right subtree too tall!\n";
         // right right case
         if (heightDiff(nodep->right) < 0)
         {
-            std::cerr << "single rotation\n";
             nodep = rotateLeft(nodep);
         }
         // right left case
@@ -378,21 +371,17 @@ AVLNode *AVLTree::rebalance(AVLNode *nodep)
 
 AVLNode *AVLTree::rotateLeft(AVLNode *nodep)
 {
-    std::cerr << "rotating about " << nodep->key << "\n";
     // store the right subtree
     AVLNode *temp = nodep->right;
-    std::cerr << "setting " << nodep->key << "'s right child to null\n";
     // move the left subtree of the right subtree to the right subtree of the node
     nodep->right = temp->left;
     // move the node to the left subtree of the right subtree
-    std::cerr << "setting " << temp->key << "'s left child to " << nodep->key << "\n";
     temp->left = nodep;
     // update the heights of the node and the right subtree
     updateHeight(nodep);
     updateHeight(temp);
     // update the pointer to the node
     nodep = temp;
-    std::cerr << "new root is " << nodep->key << "\n";
     return nodep;
 }
 AVLNode *AVLTree::rotateRight(AVLNode *nodep)
