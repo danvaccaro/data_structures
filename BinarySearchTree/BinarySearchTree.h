@@ -1,3 +1,6 @@
+#ifndef BINARYSEARCHTREE_H
+#define BINARYSEARCHTREE_H
+
 #include <iostream>
 
 using KeyType = int;
@@ -59,3 +62,5 @@ private:
     bool hasOnlyLeftChild(BSTNode *nodep) const;
     bool hasOnlyRightChild(BSTNode *nodep) const;
 };
+
+#endif

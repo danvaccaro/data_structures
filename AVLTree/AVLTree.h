@@ -1,3 +1,6 @@
+#ifndef ARRAYLIST_H
+#define ARRAYLIST_H
+
 #include <iostream>
 
 using KeyType = int;
@@ -53,3 +56,5 @@ private:
     void updateHeight(AVLNode *nodep);
     int heightDiff(AVLNode *nodep) const;
 };
+
+#endif
