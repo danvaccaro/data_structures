@@ -23,9 +23,10 @@ public:
     ElemType max() const;
     void print() const;
 
-public:
+private:
     ElemType *data;
     int numItems;
     int capacity;
+    void expandCapacity();
 };
 #endif
