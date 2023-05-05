@@ -138,3 +138,57 @@ void ArrayList::expandCapacity() {
     delete[] data;
     data = newData;
 }
+
+void ArrayList::pushToBack(ElemType elt) {
+    if (numItems == capacity) {
+        expandCapacity();
+    }
+    data[numItems] = elt;
+    numItems++;
+}
+
+void ArrayList::pushToFront(ElemType elt) {
+    if (numItems == capacity) {
+        expandCapacity();
+    }
+    for (int i = numItems; i > 0; i--) {
+        data[i] = data[i - 1];
+    }
+    data[0] = elt;
+    numItems++;
+}
+
+void ArrayList::popFromBack() {
+    if (numItems > 0) {
+        numItems--;
+    }
+}
+
+void ArrayList::popFromFront() {
+    if (numItems > 0) {
+        for (int i = 0; i < numItems - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        numItems--;
+    }
+}
+
+void ArrayList::clear() {
+    numItems = 0;
+}
+
+int ArrayList::indexOf(const ElemType elt) const {
+    for (int i = 0; i < numItems; i++) {
+        if (data[i] == elt) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+ElemType ArrayList::elementAt(int index) const {
+    if (index >= 0 && index < numItems) {
+        return data[index];
+    }
+    return 0;
+}

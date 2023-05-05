@@ -18,10 +18,17 @@ public:
     bool contains(ElemType elt) const;
     void insert(ElemType elt);
     void remove(ElemType elt);
-    void setValue(ElemType elt);
+    void setValue(int index, ElemType elt);
     ElemType min() const;
     ElemType max() const;
     void print() const;
+    void pushToBack(ElemType elt);
+    void pushToFront(ElemType elt);
+    void popFromBack();
+    void popFromFront();
+    void clear();
+    int indexOf(const ElemType elt) const;
+    ElemType elementAt(int index) const;
 
 private:
     ElemType *data;
