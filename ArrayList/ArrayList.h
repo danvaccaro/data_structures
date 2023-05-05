@@ -9,7 +9,9 @@ public:
     ArrayList();
     //destructor
     ~ArrayList();
+    //copy constructor
     ArrayList(const ArrayList &rhs);
+    //assignment operator
     ArrayList operator=(const ArrayList &rhs);
     bool isEmpty() const;
     int getSize() const;
@@ -23,6 +25,7 @@ public:
 
 public:
     ElemType *data;
-    int size;
+    int numItems;
+    int capacity;
 };
 #endif
