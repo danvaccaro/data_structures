@@ -263,8 +263,10 @@ int ArrayList::indexOf(const ElemType elt) const {
 //Parameters: int - the index of the element to be returned
 //Returns: ElemType* - a pointer to the element at the specified index
 ElemType *ArrayList::elementAt(int index) const {
+    //if the index is in range, return a pointer to the element
     if (index >= 0 && index < numItems) {
         return &data[index];
     }
+    //else return nullptr
     return nullptr;
 }
